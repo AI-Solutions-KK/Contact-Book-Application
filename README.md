@@ -47,7 +47,7 @@ ContactBook/
 
 1. **Clone the repository**
 ```bash
-git clone <your-repo-url>
+git clone "https://github.com/AI-Solutions-KK/Contact-Book-Application.git"
 cd ContactBook
 ```
 
@@ -121,7 +121,7 @@ streamlit run app.py
 
 ---
 
-## 📝 What I Learned
+## 📝 What You can Learn
 
 1. ✅ Oracle DB connection from Python
 2. ✅ Using `oracledb` driver
@@ -142,7 +142,7 @@ streamlit run app.py
 ---
 
 ## 📧 Contact
-**Developer**: [Your Name]  
+**Developer**: [Karan-kk]  
 **Project**: Learning Oracle + Python Integration
 
 ---
