@@ -1,0 +1,67 @@
+"""
+Simple Oracle Database Connection Test
+Run this first to verify Python can connect to your Oracle DB
+"""
+
+import oracledb
+
+def test_connection():
+    """Test Oracle database connection"""
+    
+    # Connection parameters (same as SQL Developer)
+    username = "SYSTEM"
+    password = "your_password_here"  # Replace with your actual password
+    host = "localhost"
+    port = 1521
+    service_name = "FREE"
+    
+    try:
+        print("Attempting to connect to Oracle Database...")
+        print(f"Host: {host}:{port}")
+        print(f"Service: {service_name}")
+        print(f"User: {username}")
+        print("-" * 50)
+        
+        # Create connection
+        connection = oracledb.connect(
+            user=username,
+            password=password,
+            host=host,
+            port=port,
+            service_name=service_name
+        )
+        
+        print("✓ Connection successful!")
+        
+        # Test with a simple query
+        cursor = connection.cursor()
+        cursor.execute("SELECT 'Hello from Oracle!' as message FROM DUAL")
+        result = cursor.fetchone()
+        print(f"✓ Query test: {result[0]}")
+        
+        # Get Oracle version
+        cursor.execute("SELECT banner FROM v$version WHERE rownum = 1")
+        version = cursor.fetchone()
+        print(f"✓ Oracle Version: {version[0]}")
+        
+        # Close connections
+        cursor.close()
+        connection.close()
+        
+        print("-" * 50)
+        print("All tests passed! ✓✓✓")
+        return True
+        
+    except oracledb.Error as e:
+        error, = e.args
+        print("✗ Connection failed!")
+        print(f"Error: {error.message}")
+        print(f"Code: {error.code}")
+        return False
+    
+    except Exception as e:
+        print(f"✗ Unexpected error: {str(e)}")
+        return False
+
+if __name__ == "__main__":
+    test_connection()
